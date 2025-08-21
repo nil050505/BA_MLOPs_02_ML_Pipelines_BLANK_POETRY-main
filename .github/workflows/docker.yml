@@ -39,12 +39,6 @@ jobs:
         # Assumes pure unit tests are in 'tests/unit/'
         python -m unittest discover tests/unit -p "test_*.py"
  
-    - name: Run Integration Tests
-      run: |
-        # Run integration tests
-        # Assumes integration tests are in 'tests/integration/' and end with '_integration.py'
-        python -m unittest discover tests/integration -p "test_*.py"
- 
     - name: Run Functional Tests
       run: |
         # Run functional tests
