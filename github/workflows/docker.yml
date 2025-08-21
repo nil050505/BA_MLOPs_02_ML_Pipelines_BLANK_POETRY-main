@@ -1,0 +1,58 @@
+name: Churn Classification APP CI/CD (Unittest)
+ 
+on:
+  push:
+    branches: [main]
+    paths:
+      - '03_Testing_CICD_Docker_Classification_APP/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - '03_Testing_CICD_Docker_Classification_APP/**'
+ 
+jobs:
+  test:
+    name: Run Unit, Integration, Functional, and E2E Tests
+    runs-on: ubuntu-latest
+ 
+    defaults:
+      run:
+        # Set the working directory to the project root within the repository
+        working-directory: "03_Testing_CICD_Docker_Classification_APP"
+ 
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+ 
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+ 
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+ 
+    - name: Run Unit Tests
+      run: |
+        # Run unit tests
+        # Assumes pure unit tests are in 'tests/unit/'
+        python -m unittest discover tests/unit -p "test_*.py"
+ 
+    - name: Run Integration Tests
+      run: |
+        # Run integration tests
+        # Assumes integration tests are in 'tests/integration/' and end with '_integration.py'
+        python -m unittest discover tests/integration -p "test_*.py"
+ 
+    - name: Run Functional Tests
+      run: |
+        # Run functional tests
+        # Assumes functional tests are in 'tests/functional/'
+        python -m unittest discover tests/functional -p "test_*.py"
+ 
+    - name: Run E2E Tests
+      run: |
+        # Run E2E tests
+        # Assumes E2E tests are in 'tests/e2e/'
+        python -m unittest discover tests/e2e -p "test_*.py"
