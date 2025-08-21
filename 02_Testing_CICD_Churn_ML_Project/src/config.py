@@ -16,7 +16,7 @@ CATEGORICAL_COLUMNS=[
             'Contract', 'PaperlessBilling', 'PaymentMethod'
         ]
 TEST_SIZE=0.25
-RANDOM_STATE=41
+RANDOM_STATE=43
 
 #file and directory names
 MODEL_FILENAME="churn_prediction_model_v1.joblib"
