@@ -1,3 +1,4 @@
+# ml_project/tests/test_data_loader.py
 """
 Objective:
     This script contains unit tests for the functions in `src/data_loader.py`,
@@ -62,6 +63,20 @@ class TestDataLoader(unittest.TestCase):
         self.assertIn('customerID', df.columns)
         self.assertIn('Churn', df.columns)
         self.assertIn('TotalCharges', df.columns)
+ 
+    def test_load_churn_dataset_file_not_found(self):
+        """Test if RuntimeError is raised for a non-existent file."""
+        non_existent_file = os.path.join(self.tmp_dir, "non_existent_file.csv")
+        with self.assertRaisesRegex(RuntimeError, "Failed to load churn dataset: .*No such file or directory.*"):
+            load_churn_dataset(non_existent_file)
+ 
+    def test_load_churn_dataset_empty_csv(self):
+        """Test loading an empty CSV file."""
+        df = load_churn_dataset(self.empty_csv_filepath)
+ 
+        self.assertIsInstance(df, pd.DataFrame)
+        self.assertEqual(len(df), 0)
+        self.assertIn('customerID', df.columns) # Should still have columns from header
  
 # This block allows you to run the tests directly from the script
 if __name__ == '__main__':
