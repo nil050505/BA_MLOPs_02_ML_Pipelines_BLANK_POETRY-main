@@ -23,3 +23,4 @@ CATEGORICAL_COLUMNS = [
 MODEL_FILENAME = "churn_prediction_model_v1.joblib"
 LOG_FILENAME = "churn_model_run_log.json"
 MODEL_STORE_DIR = "model_store"
+test=2
